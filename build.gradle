@@ -28,3 +28,24 @@ String environmentSpecificDependencyJar = "SomeDependency:SomeDependency-" + tar
 dependencies {
   compile environmentSpecificDependencyJar
 }
+
+// In our project, we have the following directories with properties files:
+//  ./src/main/resources/global/
+//  ./src/main/resources/dev/
+//  ./src/main/resources/cert/
+//  ./src/main/resources/prod/
+
+sourceSets.main.resources.srcDirs = ['src/main/resources/global']
+switch (targetEnvironment) {
+  case "PROD":
+    sourceSets.main.resources.srcDirs "src/main/resources/prod"
+    break;
+  case "CERT":
+    sourceSets.main.resources.srcDirs "src/main/resources/cert"
+    break;
+  case "DEV":
+    sourceSets.main.resources.srcDirs "src/main/resources/dev"
+    break;
+}
+
+println sourceSets.main.resources.srcDirs
