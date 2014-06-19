@@ -6,7 +6,7 @@ A build.gradle that can build a Java project targetted at a dev, cert or prod en
 How to use
 ---
 ```
-git clone git@github.com:Pance/gradle-build-for-target-environment.git
+$ git clone git@github.com:Pance/gradle-build-for-target-environment.git
 
 # Run gradle targeted at a development environment
 $ gradle -Penv=dev
