@@ -1,0 +1,15 @@
+
+String selectedEnvironment
+if (project.hasProperty('env')
+    && (env.toUpperCase().equals('DEV')
+    || env.toUpperCase().equals('CERT')
+    || env.toUpperCase().equals('PROD'))) {
+  selectedEnvironment = env.toUpperCase()
+} else if(!project.hasProperty('env')){
+  selectedEnvironment = 'dev'.toUpperCase()
+}
+else
+  throw new InvalidUserDataException("Incorrect environment specified! Environment must be DEV, CERT, or PROD.\n Environment = " + env)
+
+println "Selected environment is: " + selectedEnvironment
+
