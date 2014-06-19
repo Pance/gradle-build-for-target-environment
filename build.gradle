@@ -13,3 +13,17 @@ else
 
 println "Selected environment is: " + selectedEnvironment
 
+repositories {
+  maven {url "**The URL to some maven repo" }
+}
+
+// Lets assume that our maven repo has the following jars:
+//  SomeDependency:SomeDependency-DEV:0.2.1
+//  SomeDependency:SomeDependency-CERT:0.2.1
+//  SomeDependency:SomeDependency-PROD:0.2.1
+
+String environmentSpecificDependencyJar = "SomeDependency:SomeDependency-" + selectedEnvironment + ":0.2.1"
+
+dependencies {
+  compile environmentSpecificDependencyJar
+}
