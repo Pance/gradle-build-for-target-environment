@@ -1,17 +1,18 @@
+apply plugin: 'java'
 
-String selectedEnvironment
+String targetEnvironment
 if (project.hasProperty('env')
     && (env.toUpperCase().equals('DEV')
     || env.toUpperCase().equals('CERT')
     || env.toUpperCase().equals('PROD'))) {
-  selectedEnvironment = env.toUpperCase()
+  targetEnvironment = env.toUpperCase()
 } else if(!project.hasProperty('env')){
-  selectedEnvironment = 'dev'.toUpperCase()
+  targetEnvironment = 'dev'.toUpperCase()
 }
 else
   throw new InvalidUserDataException("Incorrect environment specified! Environment must be DEV, CERT, or PROD.\n Environment = " + env)
 
-println "Selected environment is: " + selectedEnvironment
+println "Selected environment is: " + targetEnvironment
 
 repositories {
   maven {url "**The URL to some maven repo" }
@@ -22,7 +23,7 @@ repositories {
 //  SomeDependency:SomeDependency-CERT:0.2.1
 //  SomeDependency:SomeDependency-PROD:0.2.1
 
-String environmentSpecificDependencyJar = "SomeDependency:SomeDependency-" + selectedEnvironment + ":0.2.1"
+String environmentSpecificDependencyJar = "SomeDependency:SomeDependency-" + targetEnvironment + ":0.2.1"
 
 dependencies {
   compile environmentSpecificDependencyJar
